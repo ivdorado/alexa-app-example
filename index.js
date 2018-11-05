@@ -43,4 +43,23 @@ alexaApp.intent("nameIntent", {
   }
 );
 
+alexaApp.intent("RollDice", {
+  "slots": { "diceQuantity": "AMAZON.NUMBER", "sideQuantity" : "AMAZON.NUMBER" },
+  "utterances": [
+    "tire {diceQuantity} dados de {sideQuantity} caras", "tire el dado"
+  ]
+},
+function(request, response) {
+  if(request.intent.name == 'RollDice'){
+    response.say("Roll the dice");
+  }
+  
+}
+);
+
 app.listen(PORT, () => console.log("Listening on port " + PORT + "."));
+
+function randomIntFromInterval(min,max) // min and max included
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
