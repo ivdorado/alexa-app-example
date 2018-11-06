@@ -2,7 +2,7 @@ var express = require("express");
 var alexa = require("alexa-app");
 var Speech = require("ssml-builder");
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 8088;
 var app = express();
 
 // ALWAYS setup the alexa app and attach it to express before anything else.
@@ -51,17 +51,21 @@ alexaApp.intent("RollDice", {
   ]
 },
 function(request, response) {  
-      //speech.audio("resources/dice.mp3");
-      var diceQuantity = (request.slots["diceQuantity"] == "NONE" ? 1 : int.parse(request.slots["diceQuantity"]));
-      var sideQuantity = (request.slots["sideQuantity"] == "NONE" ? 6 : int.parse(request.slots["sideQuantity"]));
+  var speech = new Speech();    
+  ;
+      var diceQuantity = (request.slots["diceQuantity"].value ? parseInt(request.slots["diceQuantity"].value) : 1);
+      var sideQuantity = (request.slots["sideQuantity"].value ? parseInt(request.slots["sideQuantity"].value) : 6);
       var results = [];
       for (i = 1; i <= diceQuantity; i++){
         results.push(randomIntFromInterval(1, sideQuantity));
       }
-      response.say("Ha salido");
+      speech.audio("./resources/dice.mp3")
+            .say("Ha salido");
       results.forEach(function(result){
-        response.say(result).pause('500ms');
-      })
+        speech.say(result.toString()).pause('500ms');
+      });
+      var speechOutput = speech.ssml(true);
+      response.say(speechOutput);
 }
 );
 
