@@ -59,7 +59,7 @@ function(request, response) {
       for (i = 1; i <= diceQuantity; i++){
         results.push(randomIntFromInterval(1, sideQuantity));
       }
-      speech.audio("https://alexa-example-1.herokuapp.com/resources/dice.mp3")
+      speech.audio("soundbank://soundlibrary/musical/amzn_sfx_drum_comedy_01")
             .say("Ha salido");
       results.forEach(function(result){
         speech.say(result.toString()).pause('500ms');
