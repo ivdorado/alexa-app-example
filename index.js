@@ -59,7 +59,7 @@ function(request, response) {
       for (i = 1; i <= diceQuantity; i++){
         results.push(randomIntFromInterval(1, sideQuantity));
       }
-      speech.audio("./resources/dice.mp3")
+      speech.audio("/resources/dice.mp3")
             .say("Ha salido");
       results.forEach(function(result){
         speech.say(result.toString()).pause('500ms');
