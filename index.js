@@ -50,9 +50,9 @@ alexaApp.intent("RollDice", {
   ]
 },
 function(request, response) {
-  if(request.intent.name == 'RollDice'){
+  
     response.say("Roll the dice");
-  }
+  
   
 }
 );
