@@ -70,7 +70,7 @@ function(request, response) {
 );
 
 app.listen(PORT, () => console.log("Listening on port " + PORT + "."));
-
+app.use('/resources', express.static(__dirname + '/resources'));
 function randomIntFromInterval(min,max) // min and max included
 {
     return Math.floor(Math.random()*(max-min+1)+min);
