@@ -1,5 +1,6 @@
 var express = require("express");
 var alexa = require("alexa-app");
+var Speech = require("ssml-builder");
 
 var PORT = process.env.PORT || 8080;
 var app = express();
@@ -30,7 +31,7 @@ alexaApp.launch(function(request, response) {
   response.say("You launched the app!");
 });
 
-alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
+
 
 // alexaApp.intent("nameIntent", {
 //     "slots": { "NAME": "LITERAL" },
@@ -49,11 +50,18 @@ alexaApp.intent("RollDice", {
     "tire {diceQuantity} dados de {sideQuantity} caras", "tire el dado"
   ]
 },
-function(request, response) {
-  
-    response.say("Roll the dice");
-  
-  
+function(request, response) {  
+      speech.audio("resources/dice.mp3");
+      var diceQuantity = (request.slots["diceQuantity"] == "NONE" ? 1 : int.parse(request.slots["diceQuantity"]));
+      var sideQuantity = (request.slots["sideQuantity"] == "NONE" ? 6 : int.parse(request.slots["sideQuantity"]));
+      var results = [];
+      for (i = 1; i <= diceQuantity; i++){
+        results.push(randomIntFromInterval(1, sideQuantity));
+      }
+      response.say("Ha salido");
+      results.forEach(function(result){
+        response.say(result).pause('500ms');
+      })
 }
 );
 
