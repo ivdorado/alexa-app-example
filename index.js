@@ -51,7 +51,7 @@ alexaApp.intent("RollDice", {
   ]
 },
 function(request, response) {  
-      speech.audio("resources/dice.mp3");
+      //speech.audio("resources/dice.mp3");
       var diceQuantity = (request.slots["diceQuantity"] == "NONE" ? 1 : int.parse(request.slots["diceQuantity"]));
       var sideQuantity = (request.slots["sideQuantity"] == "NONE" ? 6 : int.parse(request.slots["sideQuantity"]));
       var results = [];
