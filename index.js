@@ -32,16 +32,16 @@ alexaApp.launch(function(request, response) {
 
 alexaApp.dictionary = { "names": ["matt", "joe", "bob", "bill", "mary", "jane", "dawn"] };
 
-alexaApp.intent("nameIntent", {
-    "slots": { "NAME": "LITERAL" },
-    "utterances": [
-      "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
-    ]
-  },
-  function(request, response) {
-    response.say("Success!");
-  }
-);
+// alexaApp.intent("nameIntent", {
+//     "slots": { "NAME": "LITERAL" },
+//     "utterances": [
+//       "my {name is|name's} {names|NAME}", "set my name to {names|NAME}"
+//     ]
+//   },
+//   function(request, response) {
+//     response.say("Success!");
+//   }
+// );
 
 alexaApp.intent("RollDice", {
   "slots": { "diceQuantity": "AMAZON.NUMBER", "sideQuantity" : "AMAZON.NUMBER" },
