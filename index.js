@@ -61,8 +61,9 @@ function(request, response) {
       }
       speech.audio("soundbank://soundlibrary/musical/amzn_sfx_drum_comedy_01")
             .say("Ha salido");
-      results.forEach(function(result){
-        speech.say(result.toString()).pause('500ms');
+      results.forEach(function(result, idx, array){
+        if(idx === array.length -1) speech.say("y");
+        speech.say(result.toString()).pause('500ms');        
       });
       var speechOutput = speech.ssml(true);
       response.say(speechOutput);
