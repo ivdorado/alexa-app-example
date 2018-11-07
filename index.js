@@ -55,16 +55,20 @@ function(request, response) {
   ;
       var diceQuantity = (request.slots["diceQuantity"].value ? parseInt(request.slots["diceQuantity"].value) : 1);
       var sideQuantity = (request.slots["sideQuantity"].value ? parseInt(request.slots["sideQuantity"].value) : 6);
-      var results = [];
-      for (i = 1; i <= diceQuantity; i++){
-        results.push(randomIntFromInterval(1, sideQuantity));
+      if(diceQuantity < 6) {
+        var results = [];
+        for (i = 1; i <= diceQuantity; i++){
+          results.push(randomIntFromInterval(1, sideQuantity));
+        }
+        speech.audio("soundbank://soundlibrary/musical/amzn_sfx_drum_comedy_01")
+              .say("Ha salido");
+        results.forEach(function(result, idx, array){
+          if(idx === array.length -1) speech.say("y");
+          speech.say(result.toString()).pause('500ms');        
+        });
+      }else{
+        speech.say("El máximo de dados a tirar es 5");
       }
-      speech.audio("soundbank://soundlibrary/musical/amzn_sfx_drum_comedy_01")
-            .say("Ha salido");
-      results.forEach(function(result, idx, array){
-        if(idx === array.length -1) speech.say("y");
-        speech.say(result.toString()).pause('500ms');        
-      });
       var speechOutput = speech.ssml(true);
       response.say(speechOutput);
 }
