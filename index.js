@@ -28,7 +28,7 @@ alexaApp.express({
 app.set("view engine", "ejs");
 
 alexaApp.launch(function(request, response) {
-  response.say("Puedes pedir tirar hasta 5 dados en una sola tirada, o di 'Alexa, pídele a dados de rol que tire el dado' para tirar un dado de 6 caras");
+  response.say("Puedes pedir a dados de rol tirar hasta 5 dados en una sola tirada, o di 'Alexa, pídele a dados de rol que tire el dado' para tirar un dado de 6 caras");
 });
 
 
